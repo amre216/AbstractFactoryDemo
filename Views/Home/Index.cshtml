@@ -1,0 +1,52 @@
+﻿@model AbstractFactoryDemo.Models.Message
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Send message</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap-theme.css" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-left">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h1>Send message</h1>
+                    </div>
+                    <div class="panel-body">
+                        @using (@Html.BeginForm())
+                        {
+                            @Html.ValidationSummary()
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.sendTo, new { @class = "BoldNormal" })
+                                @Html.TextBoxFor(x => x.sendTo, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.content, new { @class = "BoldNormal" })
+                                @Html.TextAreaFor(x => x.content, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.MessageType, new { @class = "BoldNormal" })
+                                @Html.DropDownListFor(x => x.MessageType, new[] {
+                                new SelectListItem { Text = "Facebook", Value = "Facebook" },
+                                new SelectListItem { Text = "Twitter", Value = "Twitter" },
+                                new SelectListItem { Text = "Email", Value = "SMTP" }
+                              }, "Please select how you would like to send your message", new { @class = "form-control" })
+                            </div>
+                            <input type="submit" value="Send" class="btn btn-success" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>
